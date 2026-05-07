@@ -163,10 +163,16 @@ export function RealmCreateForm() {
         body: formData,
         headers,
       });
-      const payload = (await response.json()) as {
-        realm?: { slug: string };
-        error?: string;
-      };
+      if (response.status === 413) {
+        throw new Error("File is too large. Vercel limits uploads to 4.5MB. Please compress your beat.");
+      }
+
+      let payload: { realm?: { slug: string }; error?: string } = {};
+      try {
+        payload = await response.json();
+      } catch {
+        throw new Error(`Server error (${response.status}): The response could not be parsed.`);
+      }
 
       if (!response.ok || !payload.realm) {
         throw new Error(payload.error ?? "Unable to create Realm.");
