@@ -45,8 +45,8 @@ export async function POST(request: Request) {
     // 2. Read local audio file
     const rootDir = process.cwd();
     const audioLocalPath = localRealm.audioUrl.startsWith("/")
-      ? path.join(rootDir, "public", localRealm.audioUrl)
-      : path.join(rootDir, localRealm.audioUrl);
+      ? path.join(/* webpackIgnore: true */ /*turbopackIgnore: true*/ rootDir, "public", localRealm.audioUrl)
+      : path.join(/* webpackIgnore: true */ /*turbopackIgnore: true*/ rootDir, localRealm.audioUrl);
 
     let audioBuffer: Buffer;
     try {
@@ -82,8 +82,8 @@ export async function POST(request: Request) {
     let coverPublicUrl: string | undefined;
     if (localRealm.coverUrl) {
       const coverLocalPath = localRealm.coverUrl.startsWith("/")
-        ? path.join(rootDir, "public", localRealm.coverUrl)
-        : path.join(rootDir, localRealm.coverUrl);
+        ? path.join(/* webpackIgnore: true */ /*turbopackIgnore: true*/ rootDir, "public", localRealm.coverUrl)
+        : path.join(/* webpackIgnore: true */ /*turbopackIgnore: true*/ rootDir, localRealm.coverUrl);
 
       try {
         const coverBuffer = await readFile(coverLocalPath);
