@@ -30,14 +30,27 @@ type CreatePersistedRealmInput = {
 };
 
 async function ensureStorage() {
-  await mkdir(dataDir, { recursive: true });
-  await mkdir(audioDir, { recursive: true });
-  await mkdir(coverDir, { recursive: true });
+  try {
+    await mkdir(dataDir, { recursive: true });
+    await mkdir(audioDir, { recursive: true });
+    await mkdir(coverDir, { recursive: true });
+  } catch (error: any) {
+    // Ignore read-only file system errors (e.g., on Vercel)
+    if (error.code !== "EROFS" && error.code !== "EPERM") {
+      console.warn("Could not ensure storage directories:", error.message);
+    }
+  }
 }
 
 async function writeRealms(realms: PersistedRealm[]) {
   await ensureStorage();
-  await writeFile(dataFile, `${JSON.stringify(realms, null, 2)}\n`, "utf8");
+  try {
+    await writeFile(dataFile, `${JSON.stringify(realms, null, 2)}\n`, "utf8");
+  } catch (error: any) {
+    if (error.code !== "EROFS" && error.code !== "EPERM") {
+      console.warn("Could not write local realms:", error.message);
+    }
+  }
 }
 
 async function savePublicFile(file: File, directory: string, publicBase: string) {
@@ -53,7 +66,6 @@ async function savePublicFile(file: File, directory: string, publicBase: string)
 }
 
 export async function listPersistedRealms() {
-  await ensureStorage();
   try {
     const raw = await readFile(dataFile, "utf8");
     const parsed = JSON.parse(raw) as PersistedRealm[];
@@ -61,8 +73,10 @@ export async function listPersistedRealms() {
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
     );
-  } catch {
-    await writeRealms([]);
+  } catch (err: any) {
+    if (err.code === "ENOENT") {
+      await writeRealms([]);
+    }
     return [];
   }
 }
