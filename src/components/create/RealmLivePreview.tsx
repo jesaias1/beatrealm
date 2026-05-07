@@ -114,7 +114,7 @@ export function RealmLivePreview({
             </p>
           ) : null}
           </div>
-          <span className="inline-flex items-center gap-2 border border-[#b7ff2a]/60 bg-[#b7ff2a] px-3 py-2 font-mono text-xs font-black uppercase tracking-[0.12em] text-black">
+          <span className="inline-flex cursor-not-allowed items-center gap-2 border border-[#b7ff2a]/60 bg-[#b7ff2a] px-3 py-2 font-mono text-xs font-black uppercase tracking-[0.12em] text-black opacity-80">
             Enter Realm
             <ArrowRight size={14} />
           </span>

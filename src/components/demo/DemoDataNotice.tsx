@@ -1,4 +1,5 @@
 import { Info } from "lucide-react";
+import Link from "next/link";
 
 export function DemoDataNotice() {
   return (
@@ -9,7 +10,11 @@ export function DemoDataNotice() {
           Demo Notice
         </p>
         <p className="mt-1 text-sm leading-6 text-[#ffb000]/90">
-          This demo runs in visual-only mode. Upload your own beat to unlock real audio-reactive playback and synchronized fight markers.
+          This demo runs in visual-only mode.{" "}
+          <Link href="/create" className="font-bold text-white transition hover:text-[#b7ff2a] hover:underline">
+            Upload your own beat
+          </Link>{" "}
+          to unlock real audio-reactive playback and synchronized fight markers.
         </p>
       </div>
     </div>
