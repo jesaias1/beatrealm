@@ -8,12 +8,7 @@ type AppShellProps = {
   compact?: boolean;
 };
 
-const navItems = [
-  { href: "/create", label: "Create" },
-  { href: "/dashboard", label: "Dashboard" },
-  { href: "/realm/demo", label: "Demo Realm" },
-  { href: "/producer/demo", label: "Producer" },
-];
+const navItems: { href: string; label: string }[] = [];
 
 export function AppShell({ children, compact = false }: AppShellProps) {
   return (

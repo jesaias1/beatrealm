@@ -18,7 +18,7 @@ import { FightSettingsPanel } from "./FightSettingsPanel";
 import { FightControlsGuide } from "./FightControlsGuide";
 import { FightHud } from "./FightHud";
 import { FightResultScreen } from "./FightResultScreen";
-import { HitPromptTrack } from "./HitPromptTrack";
+
 import { LocalBestPanel } from "./LocalBestPanel";
 import { MobileHitPad } from "./MobileHitPad";
 import { RecentAttemptsPanel } from "./RecentAttemptsPanel";
@@ -209,11 +209,7 @@ export function BeatFighterGame({ realm }: BeatFighterGameProps) {
               lastImpact={game.lastImpact}
             />
           </div>
-          <HitPromptTrack
-            prompts={game.prompts}
-            currentTime={player.currentTime + timingOffsetMs / 1000}
-            duration={activeDuration}
-          />
+
           <RealmAudioPlayer
             audioRef={player.audioRef}
             audioUrl={realm.audioUrl}

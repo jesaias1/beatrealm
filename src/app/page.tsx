@@ -1,59 +1,27 @@
 import { AppShell } from "@/components/layout/AppShell";
-import { FeaturedRealmHero } from "@/components/realm/FeaturedRealmHero";
-import { RealmDiscoveryGrid } from "@/components/realm/RealmDiscoveryGrid";
-import { PublicRealmExplorer } from "@/components/discovery/PublicRealmExplorer";
-import { HeroRealmDemo } from "@/components/landing/HeroRealmDemo";
-import { ProductStorySection } from "@/components/landing/ProductStorySection";
-import { ModeShowcase } from "@/components/landing/ModeShowcase";
-import { ProducerOnboardingSection } from "@/components/landing/ProducerOnboardingSection";
-import { getDemoRealm, mockRealms } from "@/lib/realms/mockRealms";
-import { listPersistedRealms } from "@/lib/realms/realmRepository";
+import { RealmCreateForm } from "@/components/create/RealmCreateForm";
+import { GlitchText } from "@/components/ui/GlitchText";
 
 export const dynamic = "force-dynamic";
 
-export default async function Home() {
-  const realm = getDemoRealm();
-  const persistedRealms = await listPersistedRealms();
-
+export default function Home() {
   return (
     <AppShell>
-      <HeroRealmDemo realm={realm} />
-      
-      <ProductStorySection />
-      
-      <ModeShowcase />
-
-      {/* Local Discovery Section */}
-      <section className="border-t border-white/10 bg-[#050505] px-5 py-16 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-10">
-            <h2 className="font-mono text-xs font-black uppercase tracking-[0.28em] text-[#b7ff2a]">
-              Local Realms
-            </h2>
-          </div>
-          <FeaturedRealmHero persistedRealms={persistedRealms} demoRealm={realm} />
-          <RealmDiscoveryGrid
-            persistedRealms={persistedRealms}
-            fallbackRealms={mockRealms}
-          />
+      <section className="mx-auto max-w-7xl px-5 py-12 lg:px-8">
+        <div className="mb-12">
+          <p className="font-mono text-xs font-black uppercase tracking-[0.34em] text-[#b7ff2a]">
+            BeatRealm
+          </p>
+          <h1 className="mt-5 max-w-4xl text-5xl font-black uppercase leading-[0.92] text-white sm:text-7xl">
+            <GlitchText>Upload beat. Fight boss.</GlitchText>
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-300">
+            Turn any beat into a Hack & Slash arena. Upload your track to generate a playable level.
+          </p>
         </div>
+        
+        <RealmCreateForm />
       </section>
-
-      <ProducerOnboardingSection />
-
-      {/* Public Cloud Discovery */}
-      <section className="border-t border-white/10 px-5 py-16 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <PublicRealmExplorer />
-        </div>
-      </section>
-
-      <footer className="border-t border-white/10 px-5 py-8 lg:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 font-mono text-xs uppercase tracking-[0.18em] text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
-          <span>BeatRealm</span>
-          <span>Phase 10 — MVP Polish</span>
-        </div>
-      </footer>
     </AppShell>
   );
 }

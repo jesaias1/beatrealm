@@ -183,7 +183,7 @@ export function RealmCreateForm() {
         JSON.stringify(draft),
       );
       setSuccess(true);
-      router.push(`/realm/${payload.realm.slug}`);
+      router.push(`/realm/${payload.realm.slug}/fight`);
     } catch (error) {
       setErrors((current) => ({
         ...current,

@@ -1,5 +1,27 @@
 [
   {
+    "id": "52191e24-d82a-4d6e-ae43-85d32eeefbd5",
+    "slug": "osrs",
+    "title": "osrs",
+    "producerName": "jesaias",
+    "producerSlug": "jesaias",
+    "genre": "rage",
+    "mood": "aggressive",
+    "bpm": 148,
+    "visualStyle": "rage",
+    "description": "A playable neon corridor built around hard drums and broken signal energy.",
+    "audioUrl": "/uploads/audio/1778185587374-78800a98-705e-4152-ac32-81f1cc70d7ed.mp3",
+    "audioOriginalName": "osrsbeat.mp3",
+    "audioMimeType": "audio/mpeg",
+    "audioSize": 3201207,
+    "coverUrl": "/uploads/covers/1778185587385-dee47f2d-b49d-4bc4-b467-6cb74b808ff9.png",
+    "coverOriginalName": "9 heartw.png",
+    "coverMimeType": "image/png",
+    "coverSize": 70757,
+    "createdAt": "2026-05-07T20:26:27.372Z",
+    "updatedAt": "2026-05-07T20:26:27.372Z"
+  },
+  {
     "id": "5b67dfeb-0c25-4444-bff1-5836d378f23d",
     "slug": "phase-three-placeholder-test",
     "title": "Phase Three Placeholder Test",
