@@ -60,7 +60,16 @@ async function savePublicFile(file: File, directory: string, publicBase: string)
   const storedPath = path.join(directory, storedName);
   const buffer = Buffer.from(await file.arrayBuffer());
 
-  await writeFile(storedPath, buffer);
+  try {
+    await writeFile(storedPath, buffer);
+  } catch (error: any) {
+    if (error.code === "EROFS" || error.code === "EPERM" || error.code === "ENOENT") {
+      throw new Error(
+        "Local file storage is disabled on this server (read-only). Please log in and use Cloud Mode to upload your beat."
+      );
+    }
+    throw error;
+  }
 
   return `${publicBase}/${storedName}`;
 }
