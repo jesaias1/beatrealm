@@ -1,0 +1,43 @@
+[
+  {
+    "id": "5b67dfeb-0c25-4444-bff1-5836d378f23d",
+    "slug": "phase-three-placeholder-test",
+    "title": "Phase Three Placeholder Test",
+    "producerName": "Phase Three",
+    "producerSlug": "phase-three",
+    "genre": "experimental",
+    "mood": "futuristic",
+    "bpm": 123,
+    "visualStyle": "minimal",
+    "description": "Placeholder cover test realm.",
+    "audioUrl": "/uploads/audio/1778175962478-74991979-0008-414e-9a05-4096c3452ecf.wav",
+    "audioOriginalName": "Phase Three Placeholder Test.wav",
+    "audioMimeType": "audio/wav",
+    "audioSize": 52,
+    "coverPlaceholderId": "halo",
+    "createdAt": "2026-05-07T17:46:02.476Z",
+    "updatedAt": "2026-05-07T17:46:02.476Z"
+  },
+  {
+    "id": "173188c3-3dff-4d9d-951a-e7c349dd1ff7",
+    "slug": "phase-three-cover-test",
+    "title": "Phase Three Cover Test",
+    "producerName": "Phase Three",
+    "producerSlug": "phase-three",
+    "genre": "experimental",
+    "mood": "futuristic",
+    "bpm": 123,
+    "visualStyle": "rage",
+    "description": "Uploaded cover test realm.",
+    "audioUrl": "/uploads/audio/1778175962440-44a8527f-db84-4234-88db-3840fc5557fc.wav",
+    "audioOriginalName": "Phase Three Cover Test.wav",
+    "audioMimeType": "audio/wav",
+    "audioSize": 52,
+    "coverUrl": "/uploads/covers/1778175962445-1b69828b-6f3e-4064-9f0c-4d6508735d56.png",
+    "coverOriginalName": "Phase Three Cover Test.png",
+    "coverMimeType": "image/png",
+    "coverSize": 68,
+    "createdAt": "2026-05-07T17:46:02.438Z",
+    "updatedAt": "2026-05-07T17:46:02.438Z"
+  }
+]
