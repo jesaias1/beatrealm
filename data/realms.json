@@ -1,5 +1,24 @@
 [
   {
+    "id": "fde9886c-0a56-4143-b3eb-751f54a1dda9",
+    "slug": "night-circuit",
+    "title": "Night Circuit",
+    "producerName": "demo",
+    "producerSlug": "demo",
+    "genre": "rage",
+    "mood": "aggressive",
+    "bpm": 148,
+    "visualStyle": "glitch",
+    "description": "A playable neon corridor built around hard drums and broken signal energy.",
+    "audioUrl": "/uploads/audio/1778186919863-c45d4114-f0cf-4ffb-9921-c0eecdc58d1f.mp3",
+    "audioOriginalName": "osrsbeat.mp3",
+    "audioMimeType": "audio/mpeg",
+    "audioSize": 3201207,
+    "coverPlaceholderId": "void",
+    "createdAt": "2026-05-07T20:48:39.862Z",
+    "updatedAt": "2026-05-07T20:48:39.862Z"
+  },
+  {
     "id": "52191e24-d82a-4d6e-ae43-85d32eeefbd5",
     "slug": "osrs",
     "title": "osrs",

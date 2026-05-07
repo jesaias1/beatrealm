@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { AppShell } from "@/components/layout/AppShell";
-import { PersistedRealmView } from "@/components/realm/PersistedRealmView";
+import { RealmVisualizer } from "@/components/visualizer/RealmVisualizer";
 import { getCloudRealmBySlug } from "@/lib/realms/cloudRealmRepository";
 import { getPersistedRealmBySlug } from "@/lib/realms/realmRepository";
 
@@ -44,7 +44,7 @@ export default async function RealmPage({ params }: RealmPageProps) {
   if (cloudRealm) {
     return (
       <AppShell compact>
-        <PersistedRealmView realm={cloudRealm} />
+        <RealmVisualizer realm={cloudRealm} />
       </AppShell>
     );
   }
@@ -53,7 +53,7 @@ export default async function RealmPage({ params }: RealmPageProps) {
   if (localRealm) {
     return (
       <AppShell compact>
-        <PersistedRealmView realm={localRealm} />
+        <RealmVisualizer realm={localRealm} />
       </AppShell>
     );
   }
