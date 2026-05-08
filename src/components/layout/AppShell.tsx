@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { GrainOverlay } from "./GrainOverlay";
 import { Logo } from "./Logo";
-import { UserNav } from "./UserNav";
+
 
 type AppShellProps = {
   children: React.ReactNode;
@@ -31,7 +31,7 @@ export function AppShell({ children, compact = false }: AppShellProps) {
                 {item.label}
               </Link>
             ))}
-            <UserNav />
+
           </nav>
         </div>
       </header>
