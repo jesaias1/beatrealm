@@ -62,6 +62,42 @@ function Visualizer({ url, name, onReset }: { url: string; name: string; onReset
   const player = useAudioPlayer(url, true);
   const analyzer = useAudioAnalyzer(player.audioRef, player.isPlaying);
 
+  const [score, setScore] = useState(0);
+  const [combo, setCombo] = useState(0);
+  const [feedback, setFeedback] = useState<string | null>(null);
+
+  const energyRef = useRef(analyzer.energy);
+  useEffect(() => {
+    energyRef.current = analyzer.energy;
+  }, [analyzer.energy]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.code === "Space" && player.isPlaying) {
+        e.preventDefault();
+        
+        const energy = energyRef.current;
+        if (energy.isPeak || energy.peakIntensity > 0.5) {
+          setScore((s) => s + 50 + combo * 5);
+          setCombo((c) => c + 1);
+          setFeedback("PERFECT");
+        } else if (energy.overallEnergy > 0.7) {
+          setScore((s) => s + 10);
+          setCombo((c) => c + 1);
+          setFeedback("GOOD");
+        } else {
+          setCombo(0);
+          setFeedback("MISS");
+        }
+
+        setTimeout(() => setFeedback(null), 300);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [player.isPlaying, combo]);
+
   useEffect(() => {
     analyzer.ensureAnalyzer();
   }, [analyzer]);
@@ -88,10 +124,19 @@ function Visualizer({ url, name, onReset }: { url: string; name: string; onReset
         >
           Close
         </button>
+        <div className="flex gap-8">
+          <div className="flex flex-col items-center">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-zinc-500">Score</span>
+            <span className="font-mono text-xl font-black text-white">{score}</span>
+          </div>
+          <div className="flex flex-col items-center">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-zinc-500">Combo</span>
+            <span className={`font-mono text-xl font-black ${combo > 10 ? "text-[#ff2a6d]" : "text-[#b7ff2a]"}`}>{combo}</span>
+          </div>
+        </div>
         <h1 className="font-mono text-sm font-black uppercase tracking-widest text-white">
           {name}
         </h1>
-        <div className="w-16" /> {/* Spacer for centering */}
       </div>
 
       {/* Central Visualizer Block */}
@@ -107,6 +152,15 @@ function Visualizer({ url, name, onReset }: { url: string; name: string; onReset
           <div className="absolute inset-0 bg-[#ff2a6d]/40 mix-blend-screen" />
         ) : null}
       </div>
+
+      {/* Hit Feedback */}
+      {feedback && (
+        <div className="pointer-events-none absolute left-1/2 top-[30%] -translate-x-1/2 -translate-y-1/2 animate-bounce">
+          <span className={`font-mono text-4xl font-black tracking-widest ${feedback === "PERFECT" ? "text-[#b7ff2a] glitch-shadow" : feedback === "GOOD" ? "text-[#21f7ff]" : "text-[#ff2a6d]"}`}>
+            {feedback}
+          </span>
+        </div>
+      )}
 
       {/* Treble Flare */}
       <div
